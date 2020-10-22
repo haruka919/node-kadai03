@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+// corsポリシーに抵触するため、その対策としてcorsを利用する
+const cors = require('cors')
+app.use(cors())
+
 // テンプレートエンジンの指定
 app.set('view engine', 'ejs');
 
@@ -14,4 +18,6 @@ app.use(express.static('public'));
 
 // routeの設定
 app.use('/', require('./routes/index.js'));
+app.use('/api/quizes', require('./api/quizes.js'));
+
 app.listen(8888);

@@ -1,4 +1,3 @@
-const API_URL = 'https://opentdb.com/api.php?amount=10&type=multiple';
 const title = document.getElementById('title');
 const question = document.getElementById('question');
 const info = document.getElementById('info');
@@ -21,19 +20,14 @@ class Quiz {
   }
   
   async init() {
-    this.quizInfo.quizzes = await this.fetchQuizData();
+    // クイズデータを取得する
+    const quizData = await axios.get('/api/quizes')
+
+    this.quizInfo.quizzes = quizData.data.result
     this.quizInfo.currentQuizIndex = 0;
     this.quizInfo.correctCount = 0;
-    console.log(this.quizInfo.quizzes)
     // 取得したクイズデータをセット
     this.setQuiz();
-  }
-
-  // クイズデータを取得する
-  async fetchQuizData() {
-    const res = await fetch(API_URL);
-    const result = await res.json();
-    return result.results;
   }
 
   // クイズをセット
