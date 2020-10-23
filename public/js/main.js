@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const title = document.getElementById('title');
 const question = document.getElementById('question');
 const info = document.getElementById('info');
