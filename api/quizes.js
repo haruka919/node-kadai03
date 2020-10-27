@@ -1,15 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch')
+const quizController = require('../controllers/quizController')
 
-router.get('/', (req,res) =>{
-  fetch('https://opentdb.com/api.php?amount=10&type=multiple')
-    .then(response => response.json())
-    .then(result => {
-      res.json({
-        result: result.results
-      });
-    })
-});
-
+router.get('/', quizController.fetchQuizData);
 module.exports = router;
