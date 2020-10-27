@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const index = require('./routes/index.js');
+const quiz = require('./api/quizes.js')
+
 // corsポリシーに抵触するため、その対策としてcorsを利用する
 const cors = require('cors')
 app.use(cors())
@@ -17,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 // routeの設定
-app.use('/', require('./routes/index.js'));
-app.use('/api/quizes', require('./api/quizes.js'));
+app.use('/', index);
+app.use('/api/quizes', quiz);
 
 app.listen(8888);
